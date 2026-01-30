@@ -1,0 +1,125 @@
+{
+  "layer": "top",
+  "position": "top",
+  "spacing": 4,
+  "reload_style_on_change": true,
+
+  "modules-left": ["hyprland/workspaces", "cpu", "memory", "disk"],
+
+  "modules-center": ["clock"],
+
+  "modules-right": [
+    "wireplumber#sink",
+    "wireplumber#source",
+    "network",
+    "backlight",
+    "battery",
+    "custom/logout",
+  ],
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "urgent": "",
+      "active": "",
+      "default": "",
+    },
+  },
+
+  "cpu": {
+    "format": " {usage}%",
+    "tooltip": false,
+  },
+
+  "memory": {
+    "format": " {used}G",
+    "tooltip": false,
+  },
+
+  "disk": {
+    "format": " {used}",
+    "tooltip": false,
+  },
+
+  "clock": {
+    "interval": 60,
+    "tooltip": true,
+    "format": " {:%H:%M 󰨲 %a}",
+    "format-alt": " {:%b %d, %Y}",
+    "tooltip": false,
+  },
+
+  "wireplumber#sink": {
+    "node-type": "Audio/Sink",
+    "format": "{icon} {volume}",
+    "format-icons": ["󰕿", "󰖀", "󰕾"],
+    "format-muted": " {volume}",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-",
+    "tooltip": false,
+  },
+
+  "wireplumber#source": {
+    "node-type": "Audio/Source",
+    "format": " {volume}",
+    "format-muted": " {volume}",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 2%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 2%-",
+    "tooltip": false,
+  },
+
+  "backlight": {
+    "device": "nvidia_wmi_ec_backlight",
+    "format": "{icon} {percent}",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+    ], // ["", "", "", "", "", "", ""],
+    "on-scroll-up": "brightnessctl set 2%+",
+    "on-scroll-down": "brightnessctl set 2%-",
+    "tooltip": false,
+  },
+
+  "network": {
+    "format": " {essid}",
+    "format-ethernet": "",
+    "format-wifi": " {essid}",
+    "format-disconnected": "󱚵",
+    "format-disabled": "󱚼",
+    "max-length": 10,
+    "tooltip": false,
+  },
+
+  "battery": {
+    "format": "{icon} {capacity}",
+    "format-icons": ["", "", "", "", ""],
+    "format-charging": "{icon}󱐋 {capacity}",
+    "format-plugged": "{icon}󱐋 {capacity}",
+    "states": {
+      "warning": 40,
+      "critical": 20,
+    },
+    "tooltip": false,
+  },
+
+  "custom/logout": {
+    "format": "󰍃",
+    "on-click": "wlogout",
+    "tooltip": false,
+  },
+}
